@@ -1,27 +1,33 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { AppComponent } from './app.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterModule.forRoot([])],
-    }).compileComponents();
+
+  let fixture: ComponentFixture<AppComponent>;
+
+  beforeEach( () => {
+     TestBed.configureTestingModule({
+      imports: [AppComponent, RouterModule.forRoot([])],
+    }).overrideComponent(AppComponent, {
+      remove: {
+        imports: [TodoListComponent]
+      }
+    }).overrideComponent(AppComponent, {
+      set: {
+        schemas: [NO_ERRORS_SCHEMA]
+      }
+    })
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Welcome unit-testing-standalone-components-angular'
-    );
-  });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+  })
 
-  it(`should have as title 'unit-testing-standalone-components-angular'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('unit-testing-standalone-components-angular');
+  it('should have a list of todos', () => {
+    expect(fixture.debugElement.query(By.css('app-todo-list'))).not.toBeNull();
   });
 });

@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [TodoListComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'unit-testing-standalone-components-angular';
+  todos = [
+    {
+      id: 'todo-1',
+      name: 'Todo 1',
+    },
+    {
+      id: 'todo-2',
+      name: 'Todo 2',
+    }
+  ]
 }

@@ -2,7 +2,11 @@
   "name": "@unit-testing-standalone-components-angular/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "nx": "nx",
+    "start": "nx serve unit-testing-standalone-components-angular",
+    "test": "nx run-many --target=test --all"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.2.0",
