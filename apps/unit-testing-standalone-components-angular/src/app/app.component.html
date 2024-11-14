@@ -1,1 +1,5 @@
-<app-todo-list [todos]="todos"/>
+@defer () {
+  <app-todo-list [todos]="todos"/>
+} @placeholder {
+  <p>Loading list</p>
+}
