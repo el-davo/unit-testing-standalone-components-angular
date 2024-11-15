@@ -1,5 +1,5 @@
 import { model, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { AppComponent } from '../app.component';
 import { Todo } from '../todo.interface';
@@ -62,11 +62,11 @@ describe('TodoListComponent', () => {
   });
 
   describe('effects', () => {
-    it('should call doSomething when todos length is greater than 2', fakeAsync(() => {
+    it('should call doSomething when todos length is greater than 2', () => {
       expect(component.doSomething).toHaveBeenCalledTimes(1);
-    }));
+    });
 
-    it('should not call doSomething when todos length is less than 2', fakeAsync(() => {
+    it('should re-call doSomething when todos length changes', () => {
       (component.todos as any).set([
         { id: 'abc1', name: 'Todo 1' },
         { id: 'abc2', name: 'Todo 3' },
@@ -77,6 +77,6 @@ describe('TodoListComponent', () => {
       TestBed.flushEffects();
 
       expect(component.doSomething).toHaveBeenCalledTimes(2);
-    }));
+    });
   });
 });

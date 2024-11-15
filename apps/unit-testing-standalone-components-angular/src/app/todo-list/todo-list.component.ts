@@ -17,7 +17,7 @@ export class TodoListComponent {
 
   constructor() {
     effect(() => {
-      if (this.sortedTodos().length > 2) {
+      if (this.todos().length > 2) {
         this.doSomething();
       }
     });
